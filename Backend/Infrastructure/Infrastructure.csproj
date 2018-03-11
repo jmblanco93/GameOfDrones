@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20180310154043_AddPlayerModel.cs" />
+    <Compile Remove="Migrations\20180310201945_AddGameAndRoundModel.cs" />
+    <Compile Remove="Migrations\20180310202031_AddGameAndRoundModel.cs" />
+    <Compile Remove="Migrations\20180310203022_AddGameAndRoundModel.cs" />
+    <Compile Remove="Migrations\20180310204321_AddGameAndRoundModel.cs" />
+    <Compile Remove="Migrations\20180310213216_AddGameAndRoundModel.cs" />
+    <Compile Remove="Migrations\20180310222110_AddGameAndRoundModel.cs" />
+    <Compile Remove="Migrations\20180311155840_AddResultToRoundModel.cs" />
+    <Compile Remove="Migrations\20180311200317_AddGameAndRoundModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationCore\ApplicationCore.csproj" />
+  </ItemGroup>
+
+</Project>

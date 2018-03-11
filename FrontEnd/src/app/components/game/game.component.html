@@ -1,0 +1,65 @@
+<div *ngIf="game">
+  <div class="row" *ngIf="!game.winner">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body text-center">
+          
+          <h1>Round {{roundNumber}}</h1><hr>
+          <h3>{{currentPlayer.name}}</h3>
+          
+          <form novalidate #roundForm="ngForm">
+            <div class="form-group row">
+              <label for="move" class="col-4 col-sm-3 col-form-label">Select Move</label>
+              <div class="col-sm-9">
+                <select class="form-control" id="move" required [(ngModel)]="move" name="move">
+                  <option value="0">Paper</option>
+                  <option value="1">Rock</option>
+                  <option value="2">Scissors</option>
+                </select>
+              </div>
+            </div>
+            <button type="button" [hidden]="lastStep" (click)="nextPlayer()" [disabled]="!roundForm.form.valid" class="btn btn-outline-success btn-block">Ok</button>
+            <button type="button" [hidden]="!lastStep" (click)="finishRound()" [disabled]="!roundForm.form.valid" class="btn btn-outline-success btn-block">Ok</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1>Score</h1>
+          <hr>
+          <table class="table table-hover table-sm">
+            <thead>
+              <tr>
+                <th>Round</th>
+                <th>Winner</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="game.rounds">
+              <tr *ngFor="let round of game.rounds | orderBy: 'sequence'">
+                <td>{{round.sequence}}</td>
+                <td *ngIf="round.result == 0">{{game.player1.name}}</td>
+                <td *ngIf="round.result == 1">{{game.player2.name}}</td>
+                <td *ngIf="round.result == 2">TIE</td>
+              </tr>
+            </tbody>
+            
+          </table>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="game.winner">
+    <div class="col-md-10 offset-md-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1>We have a WINNER!!</h1>
+          <h3><span class="text-success">{{game.winner.name}}</span> is the new EMPEROR!</h3>
+          <button type="button" [routerLink]="['/home']" class="btn btn-outline-success">Play Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h2>Game's History</h2>        
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th>Game Date</th>
+              <th>Player 1</th>
+              <th>Player 2</th>
+              <th>Winner</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="games">
+            <tr *ngFor="let game of games | orderBy: 'dateCreated' : false | slice: ((gameHistoryPage-1) * 10): (gameHistoryPage * 10)">
+              <td>{{(game.dateCreated + 'Z') | date: 'M/d/yy, h:mm a'}}</td>
+              <td>{{game.player1.name}}</td>
+              <td>{{game.player2.name}}</td>
+              <td>{{ game.winner ? game.winner.name : 'Unfinished'}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="loadingGames" class="text-center">Cargando...</div>
+        <ngb-pagination class="pagination justify-content-center" size="sm" [collectionSize]="games.length" [(page)]="gameHistoryPage"></ngb-pagination>
+        
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h2>Leaderboard</h2>
+        <table class="table table-hover table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Player</th>
+              <th>Wins</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="leaders">
+            <tr *ngFor="let player of leaders | orderBy: 'wins' : false | slice: ((leadersPage-1) * 10): (leadersPage * 10); let i = index">
+              <td>{{(i + 1) + ((leadersPage - 1) * 10) }}</td>
+              <td>{{player.name}}</td>
+              <td>{{player.wins}}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div *ngIf="loadingLeaders" class="text-center">Cargando...</div>
+        
+        <ngb-pagination class="pagination justify-content-center" size="sm" [collectionSize]="leaders.length" [(page)]="leadersPage"></ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-9 offset-md-2">
+    <div class="card">
+      <div class="card-body">
+        <h1>Enter Player's Names</h1>
+        <hr>
+        <form novalidate (ngSubmit)="startGame(gameForm)" #gameForm="ngForm">
+          <div class="form-group row">
+            <label for="player1" class="col-4 col-sm-3  col-form-label">Player 1
+              <span style="color: #a94442;">*</span>
+            </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="player1" name="player1" [(ngModel)]="game.player1" required #player1="ngModel">
+              <div [hidden]="player1.valid || player1.pristine" class="alert alert-danger" style="margin-top:5px;">
+                Player 1 is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="player2" class="col-4 col-sm-3  col-form-label">Player 2
+              <span style="color: #a94442;">*</span>
+            </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="player2" name="player2" [(ngModel)]="game.player2" required #player2="ngModel">
+              <div [hidden]="player2.valid || player2.pristine" class="alert alert-danger" style="margin-top:5px;">
+                Player 2 is required
+              </div>
+            </div>
+          </div>
+          <div [hidden]="!errorMessage" class="alert alert-danger" style="margin-top:5px;">
+            {{errorMessage}}
+          </div>
+          <button type="submit" [disabled]="!gameForm.form.valid" class="btn btn-outline-success btn-block">Start</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
