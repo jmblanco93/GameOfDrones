@@ -16,6 +16,8 @@ export class GameComponent implements OnInit {
   currentPlayer: any = {};
   lastStep: boolean;
   round: any = {};
+  loadingGame = false;
+  errors: any = null;
 
   constructor(
     private _gameService: GamesService,
@@ -24,10 +26,16 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
     this._activatedRoute.params.subscribe(params => {
+      this.game = null;
+      this.loadingGame = true;
       this._gameService.getGame(params.id).subscribe(res => {
+        this.loadingGame = false;
         this.game = res;
         this.roundNumber = this.game.rounds.length + 1;
         this.currentPlayer = this.game.player1;
+      }, errorRes => {
+        this.loadingGame = false;
+        console.error(errorRes);
       });
     });
   }

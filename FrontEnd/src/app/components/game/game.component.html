@@ -1,4 +1,4 @@
-<div *ngIf="game">
+<div *ngIf="game && !loadingGame">
   <div class="row" *ngIf="!game.winner">
     <div class="col-md-6">
       <div class="card">
@@ -63,9 +63,13 @@
     </div>
   </div>
 </div>
-<div *ngIf="!game">
+<div *ngIf="!game && !loadingGame">
   <div class="jumbotron">
     <h1 class="display-4 text-center">Game not found</h1>
     <hr class="my-4">
   </div>
+</div>
+
+<div *ngIf="loadingGame">
+  <h3>Cargando ...</h3>
 </div>
