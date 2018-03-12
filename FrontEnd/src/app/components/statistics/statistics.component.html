@@ -23,6 +23,9 @@
         </table>
         <div *ngIf="loadingGames" class="text-center">Cargando...</div>
         <ngb-pagination class="pagination justify-content-center" size="sm" [collectionSize]="games.length" [(page)]="gameHistoryPage"></ngb-pagination>
+        <div *ngIf="errorGames" class="alert alert-danger">
+          {{errorGames | json}}
+        </div>
         
       </div>
     </div>
@@ -51,6 +54,9 @@
         <div *ngIf="loadingLeaders" class="text-center">Cargando...</div>
         
         <ngb-pagination class="pagination justify-content-center" size="sm" [collectionSize]="leaders.length" [(page)]="leadersPage"></ngb-pagination>
+        <div *ngIf="errorLeaders" class="alert alert-danger">
+          {{errorLeaders | json}}
+        </div>
       </div>
     </div>
   </div>

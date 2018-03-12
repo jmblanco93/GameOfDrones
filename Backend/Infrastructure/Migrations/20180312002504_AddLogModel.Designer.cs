@@ -12,9 +12,10 @@ using System;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DronesContext))]
-    partial class DronesContextModelSnapshot : ModelSnapshot
+    [Migration("20180312002504_AddLogModel")]
+    partial class AddLogModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

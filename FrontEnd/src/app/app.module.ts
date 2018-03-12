@@ -13,6 +13,8 @@ import { APP_ROUTING } from './app.routes';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { PlayersService } from './services/players.service';
+import { LogComponent } from './components/log/log.component';
+import { LogsService } from './services/logs.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { PlayersService } from './services/players.service';
     GameComponent,
     HomeComponent,
     OrderByPipe,
-    StatisticsComponent
+    StatisticsComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { PlayersService } from './services/players.service';
   ],
   providers: [
     GamesService,
-    PlayersService
+    PlayersService,
+    LogsService
   ],
   bootstrap: [AppComponent]
 })

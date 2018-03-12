@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GameComponent implements OnInit {
 
-  game: any = {};
+  game: any;
   move: number;
   roundNumber: number;
   currentPlayer: any = {};

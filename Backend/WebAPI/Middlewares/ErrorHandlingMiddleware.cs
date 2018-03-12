@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ApplicationCore.Entities;
+using ApplicationCore.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -8,21 +10,24 @@ namespace WebAPI.Middlewares
 {
     public class ErrorHandlingMiddleware
     {
-        private readonly RequestDelegate next;
+        private readonly RequestDelegate _next;
 
         public ErrorHandlingMiddleware(RequestDelegate next)
         {
-            this.next = next;
+            _next = next;
         }
 
-        public async Task Invoke(HttpContext context /* other scoped dependencies */)
+        public async Task Invoke(HttpContext context, IRepository<Log> repoLog, IUnitOfWork unitOfWork)
         {
             try
             {
-                await next(context);
+                await _next(context);
             }
             catch (Exception ex)
             {
+
+                repoLog.Add(new Log() { Level = LogLevel.Error, Description = ex.Message });
+                await unitOfWork.CompleteAsync();
                 await HandleExceptionAsync(context, ex);
             }
         }
@@ -36,6 +41,8 @@ namespace WebAPI.Middlewares
             //else if (exception is MyException) code = HttpStatusCode.BadRequest;
 
             var result = JsonConvert.SerializeObject(new { error = exception.Message });
+
+
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
             return context.Response.WriteAsync(result);

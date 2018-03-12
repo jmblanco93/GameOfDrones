@@ -15,6 +15,7 @@ namespace WebAPI.Mapping
             //Domain to API Resource
             CreateMap<Game, GameResource>();
             CreateMap<Player, PlayerResource>();
+            CreateMap<Log, LogResource>();
 
             //API Resource to Domain
             CreateMap<RoundResource, Round>();

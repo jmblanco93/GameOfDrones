@@ -37,6 +37,7 @@ namespace WebAPI
         {
             services.AddScoped<IRepository<Game>, GameRepository>();
             services.AddScoped<IRepository<Player>, PlayerRepository>();
+            services.AddScoped<IRepository<Log>, LogRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddCors();

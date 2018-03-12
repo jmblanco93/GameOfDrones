@@ -10,6 +10,7 @@ namespace Infrastructure.Data
     {        
         public DbSet<Player> Players { get; set; }
         public DbSet<Game> Games { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         public DronesContext(DbContextOptions<DronesContext> options) : base(options)
         {
