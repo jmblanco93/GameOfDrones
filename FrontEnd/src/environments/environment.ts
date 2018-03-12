@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  // origin: 'http://localhost:50017/api/v1/'
-  origin: 'http://gameofdrones.azurewebsites.net/services/api/v1/'
+  origin: 'http://localhost:50017/api/v1/'
+  // origin: 'http://gameofdrones.azurewebsites.net/services/api/v1/'
 };
