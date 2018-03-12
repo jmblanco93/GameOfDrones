@@ -144,7 +144,7 @@ namespace WebAPI.Controllers
             return Ok(gameResource);
         }
 
-        private RoundResult ComputeRound(Move Player1Move, Move Player2Move)
+        public RoundResult ComputeRound(Move Player1Move, Move Player2Move)
         {
             switch (Player1Move)
             {
