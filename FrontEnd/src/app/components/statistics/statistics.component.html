@@ -15,15 +15,15 @@
           <tbody *ngIf="games">
             <tr *ngFor="let game of games | orderBy: 'dateCreated' : false | slice: ((gameHistoryPage-1) * 10): (gameHistoryPage * 10)">
               <td>{{(game.dateCreated + 'Z') | date: 'M/d/yy, h:mm a'}}</td>
-              <td>{{game.player1.name}}</td>
-              <td>{{game.player2.name}}</td>
+              <td class="text-truncate">{{game.player1.name}}</td>
+              <td class="text-truncate">{{game.player2.name}}</td>
               <td *ngIf="game.winner" >{{ game.winner.name}}</td>
               <td *ngIf="!game.winner" ><a [routerLink]="['/game', game.id]" class="btn btn-sm btn-outline-success" placement="top" ngbTooltip="The game is unfinished. You can continue the game.">Continue</a></td>
             </tr>
           </tbody>
         </table>
         <div *ngIf="loadingGames" class="text-center">Cargando...</div>
-        <ngb-pagination class="pagination justify-content-center" size="sm" [collectionSize]="games.length" [(page)]="gameHistoryPage"></ngb-pagination>
+        <ngb-pagination class="pagination justify-content-center" size="sm" [maxSize]="5" [collectionSize]="games.length" [(page)]="gameHistoryPage"></ngb-pagination>
         <div *ngIf="errorGames" class="alert alert-danger">
           {{errorGames | json}}
         </div>
@@ -54,7 +54,7 @@
         
         <div *ngIf="loadingLeaders" class="text-center">Cargando...</div>
         
-        <ngb-pagination class="pagination justify-content-center" size="sm" [collectionSize]="leaders.length" [(page)]="leadersPage"></ngb-pagination>
+        <ngb-pagination class="pagination justify-content-center" size="sm" [maxSize]="5" [collectionSize]="leaders.length" [(page)]="leadersPage"></ngb-pagination>
         <div *ngIf="errorLeaders" class="alert alert-danger">
           {{errorLeaders | json}}
         </div>

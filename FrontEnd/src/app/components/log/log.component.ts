@@ -8,7 +8,7 @@ import { LogsService } from '../../services/logs.service';
 })
 export class LogComponent implements OnInit {
 
-  logs: any = {};
+  logs: any = [];
   loadingLogs = false;
   currentPage = 1;
   errorLogs: any;

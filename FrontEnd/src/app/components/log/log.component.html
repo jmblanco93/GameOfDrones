@@ -29,7 +29,7 @@
         </table>
 
         <div *ngIf="loadingLogs" class="text-center">Cargando...</div>
-        <ngb-pagination class="pagination justify-content-center" size="sm" [collectionSize]="logs.length" [(page)]="currentPage"></ngb-pagination>
+        <ngb-pagination class="pagination justify-content-center" [maxSize]="5" size="sm" [collectionSize]="logs.length" [(page)]="currentPage"></ngb-pagination>
         <div *ngIf="errorLogs" class="alert alert-danger">
           {{errorLogs | json}}
         </div>
